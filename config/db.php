@@ -1,5 +1,7 @@
 <?php
 
+$url =  parse_url(getenv("DATABASE_URL"));
+
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=yii2basic',
