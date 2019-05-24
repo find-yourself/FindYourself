@@ -18,7 +18,7 @@ class m190523_053942_yovashi_key extends Migration
             'field' => $this->string(45)->notNull()
         ]);
 
-        $this->addForeignKey('yovashi-key_questions', 'youvashi_key', 'question_id', 'questions', 'id');
+        $this->addForeignKey('yovashi-key_questions', 'yovashi_key', 'question_id', 'questions', 'id');
     }
 
     /**
@@ -26,8 +26,8 @@ class m190523_053942_yovashi_key extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('yovashi-key_questions', 'youvashi_key');
-        $this->dropTable('youvashi_key');
+        $this->dropForeignKey('yovashi-key_questions', 'yovashi_key');
+        $this->dropTable('yovashi_key');
     }
 
     /*
