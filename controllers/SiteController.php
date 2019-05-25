@@ -121,7 +121,7 @@ class SiteController extends Controller
 
     public function actionAboutTests()
     {
-      $json_url = "http://find-yourself.herokuapp.com/test-type";
+      $json_url = "https://find-yourself.herokuapp.com/test-type";
       $json = file_get_contents($json_url);
       $data = json_decode($json, TRUE);
 
@@ -134,7 +134,7 @@ class SiteController extends Controller
   public function actionTests($id)
   {
 
-    $json_url = "http://find-yourself.herokuapp.com/test-types/".$id."?expand=tests";
+    $json_url = "https://find-yourself.herokuapp.com/test-types/".$id."?expand=tests";
     $json = file_get_contents($json_url);
     $data = json_decode($json, TRUE);
 
@@ -147,7 +147,7 @@ class SiteController extends Controller
   public function actionTest($id)
   {
 
-    $json_url = "http://find-yourself.herokuapp.com/tests/".$id."?expand=questions";
+    $json_url = "https://find-yourself.herokuapp.com/tests/".$id."?expand=questions";
     $json = file_get_contents($json_url);
     $data = json_decode($json, TRUE);
 
