@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Answers;
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -116,13 +118,50 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
+
+    public function actionAboutTests()
     {
-        return $this->render('about');
+      $json_url = "https://find-yourself.herokuapp.com/test-type";
+      $json = file_get_contents($json_url);
+      $data = json_decode($json, TRUE);
+
+
+        return $this->render('about-tests', [
+          'data' => $data,
+        ]);
     }
+
+  public function actionTests($id)
+  {
+
+    $json_url = "https://find-yourself.herokuapp.com/test-types/".$id."?expand=tests";
+    $json = file_get_contents($json_url);
+    $data = json_decode($json, TRUE);
+
+
+    return $this->render('tests', [
+      'data' => $data,
+    ]);
+  }
+
+  public function actionTest($id)
+  {
+
+    $json_url = "https://find-yourself.herokuapp.com/tests/".$id."?expand=questions";
+    $json = file_get_contents($json_url);
+    $data = json_decode($json, TRUE);
+
+//    $model = new Answers();
+
+//    $questions = Questions::find()->where(['test_id' => $id])->all();
+
+
+    return $this->render('test', [
+      'data' => $data,
+//      'model' => $model,
+//      'questions' => $questions,
+    ]);
+  }
+
+
 }
