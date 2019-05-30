@@ -6,6 +6,7 @@ use app\models\Answers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\Cors;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -36,6 +37,11 @@ class SiteController extends Controller
                 'actions' => [
                     'logout' => ['post'],
                 ],
+            ],
+            'class' => Cors::className(),
+            'cors' => [
+                'Origin' => ['*'],
+                'Access-Control-Request-Method' => ['GET', 'HEAD', 'OPTIONS'],
             ],
         ];
     }
