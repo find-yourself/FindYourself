@@ -38,11 +38,6 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
-            'cors' => [
-                'class' => Cors::className(),
-                'Origin' => ['*'],
-                'Access-Control-Request-Method' => ['GET', 'HEAD', 'OPTIONS'],
-            ],
         ];
     }
 
