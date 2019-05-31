@@ -43,7 +43,7 @@ class SiteController extends Controller
                 'cors' => [
                     'Origin' => ['*'],
                     'Access-Control-Request-Method' => ['GET'],
-                    'Access-Control-Request-Headers' => ['Origin', 'Content-Type', 'Accept', 'Authorization'],
+                    'Access-Control-Request-Headers' => ['*'],
                     'Access-Control-Allow-Origin' => ['*'],
                 ]
             ],
