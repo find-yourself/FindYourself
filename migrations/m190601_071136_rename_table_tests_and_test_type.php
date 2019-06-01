@@ -27,19 +27,4 @@ class m190601_071136_rename_table_tests_and_test_type extends Migration
 
 
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m190601_071136_rename_table_tests_and_test_type cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }
