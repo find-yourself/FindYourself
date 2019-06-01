@@ -18,7 +18,7 @@ var_dump($data);
 
     <?php foreach ($data as $datum): ?>
 
-      <?= Html::a($datum['name'], Url::to(['tests', 'id' => $datum['id']]), ['class' => 'btn btn-success']) ?>
+      <?= Html::a($datum['name'], Url::to(['quiz', 'id' => $datum['id']]), ['class' => 'btn btn-success']) ?>
 <!--      --><?php //var_dump($datum) ?>
       <br>
       <br>

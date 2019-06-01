@@ -10,10 +10,10 @@ namespace app\controllers;
 
 
 use yii\rest\ActiveController;
-use app\models\TestType;
+use app\models\QuizType;
 
-class TestTypeController extends ActiveController
+class QuizTypeController extends ActiveController
 {
-  public $modelClass = TestType::class;
+  public $modelClass = QuizType::class;
 
 }

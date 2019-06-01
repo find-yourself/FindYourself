@@ -5,21 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "test_type".
+ * This is the model class for table "quiz_type".
  *
  * @property int $id
  * @property string $name
  *
- * @property Tests[] $tests
+ * @property Quiz[] $quiz
  */
-class TestType extends \yii\db\ActiveRecord
+class QuizType extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'test_type';
+        return 'quiz_type';
     }
 
     /**
@@ -47,14 +47,14 @@ class TestType extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTests()
+    public function getQuiz()
     {
-        return $this->hasMany(Tests::className(), ['type_id' => 'id']);
+        return $this->hasMany(Quiz::className(), ['type_id' => 'id']);
     }
 
 
 public function extraFields()
 {
-  return ['tests'];
+  return ['quiz'];
 }
 }

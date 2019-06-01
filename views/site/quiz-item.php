@@ -10,7 +10,7 @@ $this->title = $data['name'];
 var_dump($data);
 ?>
 
-<?= Html::a('Назад', Url::to(['tests', 'id' => $data['type_id']]), ['class' => 'btn btn-primary'])?>
+<?= Html::a('Назад', Url::to(['quiz', 'id' => $data['type_id']]), ['class' => 'btn btn-primary'])?>
 
 <div class="site-about">
   <h1><?= Html::encode($this->title) ?></h1>

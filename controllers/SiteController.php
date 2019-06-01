@@ -119,35 +119,35 @@ class SiteController extends Controller
     }
 
 
-    public function actionAboutTests()
+    public function actionAboutQuiz()
     {
-      $json_url = "https://find-yourself.herokuapp.com/test-type";
+      $json_url = Yii::$app->params['server_url'] . "/quiz-types";
+
       $json = file_get_contents($json_url);
       $data = json_decode($json, TRUE);
 
-
-        return $this->render('about-tests', [
+        return $this->render('about-quiz', [
           'data' => $data,
         ]);
     }
 
-  public function actionTests($id)
+  public function actionQuiz($id)
   {
 
-    $json_url = "https://find-yourself.herokuapp.com/test-types/".$id."?expand=tests";
+    $json_url = Yii::$app->params['server_url'] . "/quiz-types/".$id."?expand=quiz";
     $json = file_get_contents($json_url);
     $data = json_decode($json, TRUE);
 
 
-    return $this->render('tests', [
+    return $this->render('quiz', [
       'data' => $data,
     ]);
   }
 
-  public function actionTest($id)
+  public function actionQuizItem($id)
   {
 
-    $json_url = "https://find-yourself.herokuapp.com/tests/".$id."?expand=questions";
+    $json_url = Yii::$app->params['server_url'] . "/quiz-items/".$id."?expand=questions";
     $json = file_get_contents($json_url);
     $data = json_decode($json, TRUE);
 
@@ -156,7 +156,7 @@ class SiteController extends Controller
 //    $questions = Questions::find()->where(['test_id' => $id])->all();
 
 
-    return $this->render('test', [
+    return $this->render('quiz-item', [
       'data' => $data,
 //      'model' => $model,
 //      'questions' => $questions,

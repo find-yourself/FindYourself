@@ -14,7 +14,7 @@ $this->title = 'My Yii Application';
 
         <p class="lead">У тебя есть возможность узнать свою профессию.</p>
 
-        <p><?= Html::a('Виды тестов', Url::to(['about-tests']), ['class' => 'btn btn-lg btn-success'])?></p>
+        <p><?= Html::a('Виды тестов', Url::to(['about-quiz']), ['class' => 'btn btn-lg btn-success'])?></p>
 
     </div>
 
