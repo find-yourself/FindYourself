@@ -163,5 +163,19 @@ class SiteController extends Controller
     ]);
   }
 
+  public function actionAnswers($id)
+  {
+      $json_url = "https://find-yourself.herokuapp.com/tests/".$id."?expand=answers";
+      $json = file_get_contents($json_url);
+      $data = json_decode($json, TRUE);
+
+//      $model = new Answers();
+
+      return $this->render('answers', [
+         'data' => $data,
+//         'model' => $model,
+      ]);
+  }
+
 
 }
