@@ -5,23 +5,23 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tests".
+ * This is the model class for table "quiz".
  *
  * @property int $id
  * @property string $name
  * @property int $type_id
  *
  * @property Questions[] $questions
- * @property TestType $type
+ * @property QuizType $type
  */
-class Tests extends \yii\db\ActiveRecord
+class Quiz extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'tests';
+        return 'quiz';
     }
 
     /**
@@ -33,7 +33,7 @@ class Tests extends \yii\db\ActiveRecord
             [['name', 'type_id'], 'required'],
             [['type_id'], 'integer'],
             [['name'], 'string', 'max' => 50],
-            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => TestType::className(), 'targetAttribute' => ['type_id' => 'id']],
+            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => QuizType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
 
@@ -62,7 +62,7 @@ class Tests extends \yii\db\ActiveRecord
      */
     public function getType()
     {
-        return $this->hasOne(TestType::className(), ['id' => 'type_id']);
+        return $this->hasOne(QuizType::className(), ['id' => 'type_id']);
     }
 
 
