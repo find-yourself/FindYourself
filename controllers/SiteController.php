@@ -151,14 +151,14 @@ class SiteController extends Controller
     $json = file_get_contents($json_url);
     $data = json_decode($json, TRUE);
 
-//    $model = new Answers();
+    $model = new Answers();
 
 //    $questions = Questions::find()->where(['test_id' => $id])->all();
 
 
     return $this->render('test', [
       'data' => $data,
-//      'model' => $model,
+      'model' => $model,
 //      'questions' => $questions,
     ]);
   }

@@ -7,10 +7,10 @@ if ($_SERVER['SERVER_NAME'] == "find-yourself.herokuapp.com") {
     $password = $url["pass"];
     $dbname = substr($url["path"], 1);
 } else {
-    $host = 'localhost';
-    $dbname = 'yii2basic';
-    $username = 'root';
-    $password = '';
+    $host = 'eu-cdbr-west-02.cleardb.net';
+    $dbname = 'heroku_92f07953fdf3f11';
+    $username = 'b3bec2473f50ec';
+    $password = '456a797c';
 }
 $dbConfig = [
     'class' => 'yii\db\Connection',

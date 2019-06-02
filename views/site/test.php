@@ -28,3 +28,9 @@ var_dump($data);
 <!--  --><?php //ActiveForm::end(); ?>
 
 </div>
+<h2>Вопросы</h2>
+<?= var_dump($model['answers']); ?>
+<?php foreach ($model['answers'] as $models): ?>
+    <h3>Answer # <?= $models['id'] ?></h3>
+    <p><?= $models['text'] ?></p>
+<?php endforeach; ?>
