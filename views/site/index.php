@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'My Yii Application';
 ?>
-<div class="site-index">
+<!-- <div class="site-index">
 
     <div class="jumbotron">
         <h1>Приветствую!</h1>
@@ -19,4 +19,9 @@ $this->title = 'My Yii Application';
     </div>
 
 
+</div> -->
+
+<div class="content main">
+    <img src="/img/logo.png" alt="">
+    <a href="/site/banner/" class="find"><img src="/img/text-logo.png" alt="" class="find"></a>   
 </div>

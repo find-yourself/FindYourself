@@ -6,6 +6,7 @@ use app\models\Answers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\Cors;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -36,6 +37,18 @@ class SiteController extends Controller
                 'actions' => [
                     'logout' => ['post'],
                 ],
+            ],
+            'corsFilter' => [
+                'class' => Cors::className(),
+                'cors' => [
+                    'Origin' => ['*'],
+                    'Access-Control-Request-Method' => ['GET'],
+                    'Access-Control-Request-Headers' => ['*'],
+                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Max-Age' => 3600,
+                    'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
+                    'Access-Control-Allow-Origin' => ['*'],
+                ]
             ],
         ];
     }
@@ -163,5 +176,24 @@ class SiteController extends Controller
     ]);
   }
 
+    /**
+     * Displays Start page.
+     *
+     * @return string
+     */
+    public function actionStart()
+    {
+        return $this->render('start');
+    }
+
+        /**
+     * Displays Start page.
+     *
+     * @return string
+     */
+     public function actionBanner()
+     {
+         return $this->render('banner');
+     }
 
 }
