@@ -176,5 +176,24 @@ class SiteController extends Controller
     ]);
   }
 
+    /**
+     * Displays Start page.
+     *
+     * @return string
+     */
+    public function actionStart()
+    {
+        return $this->render('start');
+    }
+
+        /**
+     * Displays Start page.
+     *
+     * @return string
+     */
+     public function actionBanner()
+     {
+         return $this->render('banner');
+     }
 
 }
