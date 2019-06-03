@@ -19,7 +19,7 @@ $this->title = 'Тесты';
         <div class="about-inside">
             <?php foreach ($data as $datum): ?>
 
-            <?= Html::a($datum['name'], Url::to(['tests', 'id' => $datum['id']]), ['class' => 'about-link']) ?>
+            <?= Html::a($datum['name'], Url::to(['quiz', 'id' => $datum['id']]), ['class' => 'about-link']) ?>
             <?php endforeach; ?>
         </div>
     </div>
