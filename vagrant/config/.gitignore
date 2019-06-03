@@ -1,2 +1,4 @@
 # local configuration
 vagrant-local.yml
+vagrant-local.example.yml
+composer.lock
