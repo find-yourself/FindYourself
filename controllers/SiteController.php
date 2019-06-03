@@ -164,16 +164,44 @@ class SiteController extends Controller
     $json = file_get_contents($json_url);
     $data = json_decode($json, TRUE);
 
-//    $model = new Answers();
-
-//    $questions = Questions::find()->where(['test_id' => $id])->all();
-
 
     return $this->render('test', [
       'data' => $data,
 //      'model' => $model,
 //      'questions' => $questions,
     ]);
+  }
+
+  public function actionCountSolominQuiz()
+  {
+      // Получаю данные с фронта по каждому вопросу
+
+      // Пробегаюсь по ним и сохраняю в два массива ability и tendency,
+      /*
+       * tendency = [
+       *    human => int,
+       *    technique => int,
+       *    character => int,
+       *    image => int,
+       *    nature => int,
+       *    industrious => int,
+       *    creativity => int,
+       * ]
+       *
+       * ability = [
+       *    human => int,
+       *    technique => int,
+       *    character => int,
+       *    image => int,
+       *    nature => int,
+       *    industrious => int,
+       *    creativity => int,
+       * ]
+       *
+       * */
+
+      // Отдаю на фронт оба массива или отдаю максимальное значение в массивах, согласно которого
+      // Фронт отоброжает профессию
   }
 
 
