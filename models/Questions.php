@@ -12,7 +12,7 @@ use Yii;
  * @property int $test_id
  *
  * @property Answers[] $answers
- * @property Tests $test
+ * @property Quiz $quiz
  * @property SolominKey[] $solominKeys
  * @property SubjectsKey[] $subjectsKeys
  * @property YovashiKey[] $yovashiKeys
@@ -36,7 +36,7 @@ class Questions extends \yii\db\ActiveRecord
             [['text', 'test_id'], 'required'],
             [['text'], 'string'],
             [['test_id'], 'integer'],
-            [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tests::className(), 'targetAttribute' => ['test_id' => 'id']],
+            [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Quiz::className(), 'targetAttribute' => ['test_id' => 'id']],
         ];
     }
 
@@ -63,9 +63,9 @@ class Questions extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTest()
+    public function getQuiz()
     {
-        return $this->hasOne(Tests::className(), ['id' => 'test_id']);
+        return $this->hasOne(Quiz::className(), ['id' => 'test_id']);
     }
 
     /**
