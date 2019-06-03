@@ -17,6 +17,7 @@ Thumbs.db
 
 # composer itself is not needed
 composer.phar
+composer.lock
 
 # Mac DS_Store Files
 .DS_Store
@@ -31,3 +32,8 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+vagrant-local.yml
+vagrant-local.example.yml
+vagrant/config/vagrant-local.example.yml
+vagrant/config/vagrant-local.example.yml
+composer.lock
