@@ -136,6 +136,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #FFC700;
 }
 .find {
     margin-top: 30px;
