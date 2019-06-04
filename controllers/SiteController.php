@@ -41,10 +41,9 @@ class SiteController extends Controller
             'corsFilter' => [
                 'class' => Cors::className(),
                 'cors' => [
-                    'Origin' => ['*'],
-                    'Access-Control-Request-Method' => ['GET'],
+                    'Access-Control-Request-Method' => ['GET', 'POST'],
                     'Access-Control-Request-Headers' => ['*'],
-                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Allow-Credentials' => ['*'],
                     'Access-Control-Max-Age' => 3600,
                     'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
                     'Access-Control-Allow-Origin' => ['*'],
@@ -164,8 +163,7 @@ class SiteController extends Controller
     $json = file_get_contents($json_url);
     $data = json_decode($json, TRUE);
 
-
-    if($id === 1) {
+    if($id == 1) {
         return $this->render('solomin-quiz', [
             'data' => $data,
         ]);
@@ -177,7 +175,6 @@ class SiteController extends Controller
 //      'questions' => $questions,
     ]);
   }
-
 
 
     /**
@@ -200,3 +197,4 @@ class SiteController extends Controller
          return $this->render('banner');
      }
 }
+
