@@ -159,21 +159,31 @@ class SiteController extends Controller
   public function actionQuizItem($id)
   {
 
-    $json_url = Yii::$app->params['server_url'] . "/quiz-items/".$id."?expand=questions";
-    $json = file_get_contents($json_url);
-    $data = json_decode($json, TRUE);
+    $json_url_question = Yii::$app->params['server_url'] . "/quiz-items/".$id."?expand=questions";
+    $json = file_get_contents($json_url_question);
+    $data_questions = json_decode($json, TRUE);
+
+    $json_url_answer = Yii::$app->params['server_url'] . "/answers";
+    $json = file_get_contents($json_url_answer);
+    $data_answers = json_decode($json, TRUE);
 
     if($id == 1) {
         return $this->render('solomin-quiz', [
-            'data' => $data,
+            'data' => $data_questions,
         ]);
     }
 
     return $this->render('quiz-item', [
-      'data' => $data,
-//      'model' => $model,
-//      'questions' => $questions,
+      'data_questions' => $data_questions,
+      'data_answers' => $data_answers,
     ]);
+  }
+
+  public function actionResult()
+  {
+    var_dump(Yii::$app->request->post());
+    die;
+
   }
 
 
