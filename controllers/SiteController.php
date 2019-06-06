@@ -168,9 +168,13 @@ class SiteController extends Controller
 
 //    $questions = Questions::find()->where(['test_id' => $id])->all();
 
+    $newData = array_chunk($data['questions'], 5, TRUE);
+
 
     return $this->render('quiz-item', [
       'data' => $data,
+      'newData' => $newData,
+      
 //      'model' => $model,
 //      'questions' => $questions,
     ]);
@@ -194,6 +198,12 @@ class SiteController extends Controller
      public function actionBanner()
      {
          return $this->render('banner');
+     }
+
+     public function actionAnswer()
+     {   
+        $tendencyHuman = Yii::$app->request->post('tendencyHuman');
+       
      }
 
 }
