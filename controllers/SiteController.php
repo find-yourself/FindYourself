@@ -41,10 +41,9 @@ class SiteController extends Controller
             'corsFilter' => [
                 'class' => Cors::className(),
                 'cors' => [
-                    'Origin' => ['*'],
-                    'Access-Control-Request-Method' => ['GET'],
+                    'Access-Control-Request-Method' => ['GET', 'POST'],
                     'Access-Control-Request-Headers' => ['*'],
-                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Allow-Credentials' => ['*'],
                     'Access-Control-Max-Age' => 3600,
                     'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
                     'Access-Control-Allow-Origin' => ['*'],
@@ -160,25 +159,46 @@ class SiteController extends Controller
   public function actionQuizItem($id)
   {
 
-    $json_url = Yii::$app->params['server_url'] . "/quiz-items/".$id."?expand=questions";
-    $json = file_get_contents($json_url);
-    $data = json_decode($json, TRUE);
+    $json_url_question = Yii::$app->params['server_url'] . "/quiz-items/".$id."?expand=questions";
+    $json = file_get_contents($json_url_question);
+    $data_questions = json_decode($json, TRUE);
 
-//    $model = new Answers();
-
-//    $questions = Questions::find()->where(['test_id' => $id])->all();
-
-    $newData = array_chunk($data['questions'], 5, TRUE);
+    $json_url_answer = Yii::$app->params['server_url'] . "/answers";
+    $json = file_get_contents($json_url_answer);
+    $data_answers = json_decode($json, TRUE);
 
 
-    return $this->render('quiz-item', [
-      'data' => $data,
-      'newData' => $newData,
+    $newData = array_chunk($data_questions['questions'], 5, TRUE);
+
+
+    // return $this->render('quiz-item', [
+    //   'data' => $data,
+    //   'newData' => $newData,
+    // ]);
       
 //      'model' => $model,
 //      'questions' => $questions,
+
+    if($id == 1) {
+        return $this->render('solomin-quiz', [
+            'data' => $data_questions,
+        ]);
+    }
+
+    return $this->render('quiz-item', [
+      'data_questions' => $data_questions,
+      'data_answers' => $data_answers,
+      'newData' => $newData,
     ]);
   }
+
+  public function actionResult()
+  {
+    var_dump(Yii::$app->request->post());
+    die;
+
+  }
+
 
     /**
      * Displays Start page.
@@ -207,3 +227,4 @@ class SiteController extends Controller
      }
 
 }
+
