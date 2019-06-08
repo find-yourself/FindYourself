@@ -179,11 +179,11 @@ class SiteController extends Controller
 //      'model' => $model,
 //      'questions' => $questions,
 
-    if($id == 1) {
-        return $this->render('solomin-quiz', [
-            'data' => $data_questions,
-        ]);
-    }
+    // if($id == 1) {
+    //     return $this->render('solomin-quiz', [
+    //         'data' => $data_questions,
+    //     ]);
+    // }
 
     return $this->render('quiz-item', [
       'data_questions' => $data_questions,
