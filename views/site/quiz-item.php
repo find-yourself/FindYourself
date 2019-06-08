@@ -11,16 +11,15 @@ use yii\helpers\ArrayHelper;
 $this->title = $data_questions['name'];
 
 
-
+// var_dump($data_questions);
 
 ?>
-
 
 <div class="content">
       <header>
         <div class="line-grey"></div>
         <div class="line-dark">
-            <?= Html::a('', Url::to(['quiz', $data_questions['type_id']]), ['class' => 'header-link'])?>
+        <?= Html::a('', Url::to(['quiz', 'id' => $data_questions['type_id']]), ['class' => 'header-link'])?>
             <h1><?= Html::encode($this->title) ?></h1>
         </div>
         </header>
