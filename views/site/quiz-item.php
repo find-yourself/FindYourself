@@ -25,6 +25,7 @@ $this->title = $data_questions['name'];
         </header>
     <?php foreach ($newData as $key => $value): ?>
     <div id="block-<?php echo $key; ?>" data-id="<?php echo $key; ?>" class="block-questions">
+    <p class="solimin-heading"></p>
       <?php foreach ($value as $val): ?>
       <div class="block-links">
           <p class="question" id="q-<?php echo $val['id']; ?>"><?php echo $val['text']; ?></p>
