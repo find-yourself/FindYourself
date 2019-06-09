@@ -60,9 +60,26 @@ $(document).ready(function(){
   let abilityPerformer;
   let abilityCreativity;
 
+
+
   function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
+
+  $('#block-0 .solimin-heading').text('Я хочу (мне нравится, меня привлекает, я предпочитаю');
+  $('#block-1 .solimin-heading').text('Я хочу (мне нравится, меня привлекает, я предпочитаю');
+  $('#block-2 .solimin-heading').text('Я хочу (мне нравится, меня привлекает, я предпочитаю');
+  $('#block-3 .solimin-heading').text('Я хочу (мне нравится, меня привлекает, я предпочитаю');
+  $('#block-4 .solimin-heading').text('Я хочу (мне нравится, меня привлекает, я предпочитаю');
+  $('#block-5 .solimin-heading').text('Я хочу (мне нравится, меня привлекает, я предпочитаю');
+  $('#block-6 .solimin-heading').text('Я хочу (мне нравится, меня привлекает, я предпочитаю');
+  $('#block-7 .solimin-heading').text('Я могу (способен, умею, обладаю навыками');
+  $('#block-8 .solimin-heading').text('Я могу (способен, умею, обладаю навыками');
+  $('#block-9 .solimin-heading').text('Я могу (способен, умею, обладаю навыками');
+  $('#block-10 .solimin-heading').text('Я могу (способен, умею, обладаю навыками');
+  $('#block-11 .solimin-heading').text('Я могу (способен, умею, обладаю навыками');
+  $('#block-12 .solimin-heading').text('Я могу (способен, умею, обладаю навыками');
+  $('#block-13 .solimin-heading').text('Я могу (способен, умею, обладаю навыками');
 
   function changeDisplay(parent) {
     let id = +($(parent).attr('data-id'));
