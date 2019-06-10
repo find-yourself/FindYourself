@@ -96,7 +96,9 @@ $(document).ready(function(){
     }
   };
 
-  $('.answer-link').on('click', function() {
+  $('.answer-link').on('click', function(e) {
+
+e.preventDefault();
 
     let parent = $(this).parent();
     let parentName = $(this).parent().attr('id');
