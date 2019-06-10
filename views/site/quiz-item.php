@@ -29,14 +29,29 @@ $this->title = $data_questions['name'];
       <?php foreach ($value as $val): ?>
       <div class="block-links">
           <p class="question" id="q-<?php echo $val['id']; ?>"><?php echo $val['text']; ?></p>
-                  <input class="radio"  id="input1-<?php echo $val['id']; ?>" type="radio" value="1" name="<?php echo $val['text']; ?>">
-                  <label for="input1-<?php echo $val['id']; ?>"></label>
-                  <input class="radio"  id="input2-<?php echo $val['id']; ?>" type="radio" value="2" name="<?php echo $val['text']; ?>">
-                  <label for="input2-<?php echo $val['id']; ?>"></label>
-                  <input class="radio"  id="input3-<?php echo $val['id']; ?>" type="radio" value="3" name="<?php echo $val['text']; ?>">
-                  <label for="input3-<?php echo $val['id']; ?>"></label>
-                  <input class="radio"  id="input4-<?php echo $val['id']; ?>" type="radio" value="4" name="<?php echo $val['text']; ?>">
-                  <label for="input4-<?php echo $val['id']; ?>"></label>
+          <div class="input-group">
+              <div class="one-input">
+                  <p class="input-name">Вовсе нет</p>
+                  <input class="radio radio-one"  id="input1-<?php echo $val['id']; ?>" type="radio" value="1" name="<?php echo $val['text']; ?>">
+                    <label for="input1-<?php echo $val['id']; ?>"></label>
+              </div>
+              <div class="one-input">
+                  <p class="input-name">Пожалуй так</p>
+                  <input class="radio radio-two"  id="input2-<?php echo $val['id']; ?>" type="radio" value="2" name="<?php echo $val['text']; ?>">
+                    <label for="input2-<?php echo $val['id']; ?>"></label>
+              </div>
+              <div class="one-input">
+                  <p class="input-name">Верно</p>
+                  <input class="radio radio-three"  id="input3-<?php echo $val['id']; ?>" type="radio" value="3" name="<?php echo $val['text']; ?>">
+                    <label for="input3-<?php echo $val['id']; ?>"></label>
+              </div>
+              <div class="one-input">
+                  <p class="input-name">Совершенно верно</p>
+                  <input class="radio radio-four"  id="input4-<?php echo $val['id']; ?>" type="radio" value="4" name="<?php echo $val['text']; ?>">
+                    <label for="input4-<?php echo $val['id']; ?>"></label>
+              </div>
+                    
+          </div>
         </div>
         <?php endforeach; ?>
         <button class="answer-link">Далее</button>
