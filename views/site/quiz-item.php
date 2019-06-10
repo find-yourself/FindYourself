@@ -36,7 +36,7 @@ $this->title = $data_questions['name'];
           <?php $i = 1; ?>
           <?php foreach ($data_answers as $answer): ?>
             <?php if ($answer['question_id'] == $val['id']): ?>
-              <input type="radio" name="question-<?= $val['id'] ?>" value="<?= $i ?>"> <?= $answer['text'] ?><Br>
+              <input type="radio" name="<?= $val['id'] ?>" value="<?= $i ?>"> <?= $answer['text'] ?><Br>
               <?php $i += 2; ?>
             <?php endif; ?>
 
