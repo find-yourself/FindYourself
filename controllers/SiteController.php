@@ -185,11 +185,20 @@ class SiteController extends Controller
     //     ]);
     // }
 
-    return $this->render('quiz-item', [
-      'data_questions' => $data_questions,
-      'data_answers' => $data_answers,
-      'newData' => $newData,
-    ]);
+    if($id == 1) {
+        return $this->render('solomin-quiz', [
+            'data_questions' => $data_questions,
+            'data_answers' => $data_answers,
+            'newData' => $newData,
+          ]);
+    } else {
+        return $this->render('quiz-item', [
+            'data_questions' => $data_questions,
+            'data_answers' => $data_answers,
+            'newData' => $newData,
+        ]);
+    }
+
   }
 
   public function actionResult()
