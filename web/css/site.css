@@ -334,8 +334,9 @@ html,
     position: absolute;
     top: -3px;
     left: 0;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+    background: rgb(165, 165, 165);
     border: 1px solid #CDD1DA;
     border-radius: 50%;
     background: #FFF;
@@ -390,9 +391,7 @@ html,
   .answer-link:focus, .result:focus {
       outline: none !important;
   }
-  .block-links {
-      height: 75px;
-  }
+
 #block-0 {
 
 }
@@ -437,6 +436,33 @@ html,
     display: none;
 }
 .solimin-heading {
-    font-size: 16px;
-    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center; 
+    color: #000000;
+    padding: 16px 20px 2px 20px;
+    margin-bottom: 0;
+    margin-bottom: 0;
+}
+.question {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+    padding: 10px;
+}
+.input-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.input-name {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000;
 }
