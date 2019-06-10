@@ -171,25 +171,18 @@ class SiteController extends Controller
     $newData = array_chunk($data_questions['questions'], 5, TRUE);
 
 
-    // return $this->render('quiz-item', [
-    //   'data' => $data,
-    //   'newData' => $newData,
-    // ]);
-      
-//      'model' => $model,
-//      'questions' => $questions,
+    if($id == 1) {
+        return $this->render('solomin-quiz', [
+            'data_questions' => $data_questions,
+            'data_answers' => $data_answers,
+            'newData' => $newData,
+          ]);
+    } else {
+        return $this->render('quiz-item', [
+            'data' => $data_questions,
+        ]);
+    }
 
-    // if($id == 1) {
-    //     return $this->render('solomin-quiz', [
-    //         'data' => $data_questions,
-    //     ]);
-    // }
-
-    return $this->render('quiz-item', [
-      'data_questions' => $data_questions,
-      'data_answers' => $data_answers,
-      'newData' => $newData,
-    ]);
   }
 
   public function actionResult()
