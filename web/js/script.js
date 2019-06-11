@@ -46,16 +46,16 @@ $(document).ready(function(){
     
   let tendencyHuman;
   let tendencyTechnique;
-  let tendencySignSystem;
-  let tendencyArtImage;
+  let tendencySign;
+  let tendencyArt;
   let tendencyNature;
   let tendencyPerformer;
   let tendencyCreativity;
 
   let abilityHuman;
   let abilityTechnique;
-  let abilitySignSystem;
-  let abilityArtImage;
+  let abilitySign;
+  let abilityArt;
   let abilityNature;
   let abilityPerformer;
   let abilityCreativity;
@@ -120,15 +120,15 @@ e.preventDefault();
         }
         break;
       case 'block-2':
-        tendencySignSystem = getResults(parent);
-        go = isNumeric(tendencySignSystem);
+        tendencySign = getResults(parent);
+        go = isNumeric(tendencySign);
         if(go === true) {
           changeDisplay(parent);
         }
         break;
       case 'block-3':
-        tendencyArtImage = getResults(parent);
-        go = isNumeric(tendencyArtImage);
+        tendencyArt = getResults(parent);
+        go = isNumeric(tendencyArt);
         if(go === true) {
           changeDisplay(parent);
         }
@@ -169,15 +169,15 @@ e.preventDefault();
         }
         break;
       case 'block-9':
-        abilitySignSystem = getResults(parent);
-        go = isNumeric(abilitySignSystem);
+        abilitySign = getResults(parent);
+        go = isNumeric(abilitySign);
         if(go === true) {
           changeDisplay(parent);
         }
         break;
       case 'block-10':
-        abilityArtImage = getResults(parent);
-        go = isNumeric(abilityArtImage);
+        abilityArt = getResults(parent);
+        go = isNumeric(abilityArt);
         if(go === true) {
           changeDisplay(parent);
         }
@@ -210,40 +210,55 @@ e.preventDefault();
 
   $('.result').on('click', function() {
 
-    let formData = new FormData();
-    formData.append('tendencyHuman', tendencyHuman);
-    formData.append('tendencyTechnique', tendencyTechnique);
-    formData.append('tendencySignSystem', tendencySignSystem);
-    formData.append('tendencyArtImage', tendencyArtImage);
-    formData.append('tendencyNature', tendencyNature);
-    formData.append('tendencyPerformer', tendencyPerformer);
-    formData.append('tendencyCreativity', tendencyCreativity);
-    formData.append('abilityHuman', abilityHuman);
-    formData.append('abilityTechnique', abilityTechnique);
-    formData.append('abilitySignSystem', abilitySignSystem);
-    formData.append('abilityArtImage', abilityArtImage);
-    formData.append('abilityNature', abilityNature);
-    formData.append('abilityPerformer', abilityPerformer);
-    formData.append('abilityCreativity', abilityCreativity);
+    // let formData = new FormData();
+    // formData.append('tendencyHuman', tendencyHuman);
+    // formData.append('tendencyTechnique', tendencyTechnique);
+    // formData.append('tendencySign', tendencySign);
+    // formData.append('tendencyArt', tendencyArt);
+    // formData.append('tendencyNature', tendencyNature);
+    // formData.append('tendencyPerformer', tendencyPerformer);
+    // formData.append('tendencyCreativity', tendencyCreativity);
+    // formData.append('abilityHuman', abilityHuman);
+    // formData.append('abilityTechnique', abilityTechnique);
+    // formData.append('abilitySign', abilitySign);
+    // formData.append('abilityArt', abilityArt);
+    // formData.append('abilityNature', abilityNature);
+    // formData.append('abilityPerformer', abilityPerformer);
+    // formData.append('abilityCreativity', abilityCreativity);
+
+    let arr = [tendencyHuman, tendencyTechnique, tendencySign, tendencyArt, tendencyNature, tendencyPerformer, tendencyCreativity, abilityHuman, abilityTechnique, abilitySign, abilityArt, abilityNature, abilityPerformer, abilityCreativity];
+
+    let jsonString = JSON.stringify(arr);
+
+    // $.ajax({
+    //     url: '/site/answer',
+    //     type: 'POST',
+    //     processData: false,
+    //     contentType: false,
+    //     data: formData,
+    //     success: function(formData){
+    //       console.log(formData)
+    //     },
+    //     error: function(error){
+    //       console.log('fail');
+    //       }
+    //   });
 
     $.ajax({
-        url: '/site/answer',
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        data: formData,
-        success: function(formData){
-          console.log(formData)
-        },
-        error: function(error){
-          console.log('fail');
+          url: '/site/answer',
+          type: 'POST',
+          data: {data : jsonString}, 
+          cache: false,
+  
+          success: function(){
+              console.log('ok');
           }
-      });
+        });
 
   
   });
 
-
+  
 
 });
 
