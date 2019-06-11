@@ -225,7 +225,7 @@ $(document).ready(function(){
     formData.append('abilityCreativity', abilityCreativity);
 
     $.ajax({
-        url: '/site/answer',
+        url: '/solomin/index',
         type: 'POST',
         processData: false,
         contentType: false,

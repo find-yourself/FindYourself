@@ -54,6 +54,11 @@ class SolominController extends Controller
 
   public function actionIndex()
   {
+    $request = Yii::$app->request;
+    if($request->isAjax){
+        
+    }
+      var_dump(Yii::$app->request->post());
     $tendency = [
         'human' => 10,
         'technique' => 3,
