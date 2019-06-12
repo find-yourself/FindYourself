@@ -1,19 +1,25 @@
 <?php
-if (getenv("CLEARDB_DATABASE_URL")) {
+if ($_SERVER['SERVER_NAME'] == "find-yourself.herokuapp.com") {
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    return [
-        'class' => 'yii\db\Connection',
-        'dsn' => "mysql:host={$url["host"]};dbname=" . substr($url["path"], 1),
-        'username' => $url["user"],
-        'password' => $url["pass"],
-        'charset' => 'utf8',
-        // Schema cache options (for production environment)
-        'enableSchemaCache' => true,
-        //'schemaCacheDuration' => 60,
-        //'schemaCache' => 'cache',
-    ];
+    $host = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $dbname = substr($url["path"], 1);
+} else {
+    $host = 'localhost';
+    $dbname = 'yii2basic';
+    $username = 'root';
+    $password = '';
 }
-if (!file_exists(__DIR__ . DIRECTORY_SEPARATOR . 'local_db.php')) {
-    die('Не найден файл локальной конфигурации базы банных "config/local_db.php"');
-}
-return require __DIR__ . DIRECTORY_SEPARATOR . 'local_db.php';
+$dbConfig = [
+    'class' => 'yii\db\Connection',
+    'dsn' => "mysql:host={$host};dbname={$dbname}",
+    'username' => $username,
+    'password' => $password,
+    'charset' => 'utf8',
+    // Schema cache options (for production environment)
+    //'enableSchemaCache' => true,
+    //'schemaCacheDuration' => 60,
+    //'schemaCache' => 'cache',
+];
+return $dbConfig;

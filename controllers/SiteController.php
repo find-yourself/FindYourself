@@ -229,14 +229,15 @@ class SiteController extends Controller
 
     public function actionProfessions($id)
     {
-//        $json_url_professions = Yii::$app->params['server_url'] . "/quiz-items/" . $id . "?expand=questions";
-//        $json = file_get_contents($json_url_question);
-//        $data_questions = json_decode($json, TRUE);
+        $json_url_professions = Yii::$app->params['server_url'] . "/professions/" . $id . "?expand=professions";
+        $json = file_get_contents($json_url_professions);
+        $data_professions = json_decode($json, TRUE);
 
         $professions = Professions::find() -> all();
 
         return $this->render('professions', [
            'professions' => $professions,
+            'data_professions' => $data_professions,
         ]);
     }
 
