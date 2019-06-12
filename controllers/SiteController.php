@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Answers;
 
+use app\models\Professions;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\Cors;
@@ -133,57 +134,43 @@ class SiteController extends Controller
 
     public function actionAboutQuiz()
     {
-      $json_url = Yii::$app->params['server_url'] . "/quiz-types";
+        $json_url = Yii::$app->params['server_url'] . "/quiz-types";
 
-      $json = file_get_contents($json_url);
-      $data = json_decode($json, TRUE);
+        $json = file_get_contents($json_url);
+        $data = json_decode($json, TRUE);
 
         return $this->render('about-quiz', [
-          'data' => $data,
+            'data' => $data,
         ]);
     }
 
-  public function actionQuiz($id)
-  {
+    public function actionQuiz($id)
+    {
 
-    $json_url = Yii::$app->params['server_url'] . "/quiz-types/".$id."?expand=quiz";
-    $json = file_get_contents($json_url);
-    $data = json_decode($json, TRUE);
-
-
-    return $this->render('quiz', [
-      'data' => $data,
-    ]);
-  }
-
-  public function actionQuizItem($id)
-  {
-
-    $json_url_question = Yii::$app->params['server_url'] . "/quiz-items/".$id."?expand=questions";
-    $json = file_get_contents($json_url_question);
-    $data_questions = json_decode($json, TRUE);
-
-    $json_url_answer = Yii::$app->params['server_url'] . "/answers";
-    $json = file_get_contents($json_url_answer);
-    $data_answers = json_decode($json, TRUE);
+        $json_url = Yii::$app->params['server_url'] . "/quiz-types/" . $id . "?expand=quiz";
+        $json = file_get_contents($json_url);
+        $data = json_decode($json, TRUE);
 
 
-    $newData = array_chunk($data_questions['questions'], 5, TRUE);
+        return $this->render('quiz', [
+            'data' => $data,
+        ]);
+    }
+
+    public function actionQuizItem($id)
+    {
+
+        $json_url_question = Yii::$app->params['server_url'] . "/quiz-items/" . $id . "?expand=questions";
+        $json = file_get_contents($json_url_question);
+        $data_questions = json_decode($json, TRUE);
+
+        $json_url_answer = Yii::$app->params['server_url'] . "/answers";
+        $json = file_get_contents($json_url_answer);
+        $data_answers = json_decode($json, TRUE);
 
 
-    // return $this->render('quiz-item', [
-    //   'data' => $data,
-    //   'newData' => $newData,
-    // ]);
-      
-//      'model' => $model,
-//      'questions' => $questions,
+        $newData = array_chunk($data_questions['questions'], 5, TRUE);
 
-    // if($id == 1) {
-    //     return $this->render('solomin-quiz', [
-    //         'data' => $data_questions,
-    //     ]);
-    // }
 
     if($id == 1) {
         return $this->render('solomin-quiz', [
@@ -368,7 +355,8 @@ class SiteController extends Controller
     //var_dump($itog);
     return array_keys($itog, max($itog));
 
-  }
+
+    }
 
 
     /**
@@ -381,21 +369,34 @@ class SiteController extends Controller
         return $this->render('start');
     }
 
-        /**
+    /**
      * Displays Start page.
      *
      * @return string
      */
-     public function actionBanner()
-     {
-         return $this->render('banner');
-     }
+    public function actionBanner()
+    {
+        return $this->render('banner');
+    }
 
-     public function actionAnswer()
-     {   
+    public function actionAnswer()
+    {
         $tendencyHuman = Yii::$app->request->post('tendencyHuman');
-       
-     }
+
+    }
+
+    public function actionProfessions($id)
+    {
+//        $json_url_professions = Yii::$app->params['server_url'] . "/quiz-items/" . $id . "?expand=questions";
+//        $json = file_get_contents($json_url_question);
+//        $data_questions = json_decode($json, TRUE);
+
+        $professions = Professions::find() -> all();
+
+        return $this->render('professions', [
+           'professions' => $professions,
+        ]);
+    }
 
 }
 
