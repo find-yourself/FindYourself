@@ -54,43 +54,43 @@ class SolominController extends Controller
 
   public function actionIndex()
   {
-    $request = Yii::$app->request;
-    if($request->isAjax){
-        
-    }
-      var_dump(Yii::$app->request->post());
-    $tendency = [
-        'human' => 10,
-        'technique' => 3,
-        'signSystem' => 5,
-        'artImage' => 13,
-        'nature' => 4,
-        'performer' => 8,
-        'creativity' => 12,
-    ];
+//        $request = Yii::$app->request;
+//        $results = $request->post();
 
-    $ability = [
-        'human' => 10,
-        'technique' => 3,
-        'signSystem' => 5,
-        'artImage' => 13,
-        'nature' => 4,
-        'performer' => 8,
-        'creativity' => 12,
-    ];
+      $results = [
+      'tendencyHuman' => 12,
+      'tendencyTechnique' => 8,
+      'tendencySign' => 10,
+      'tendencyArt' => 7,
+      'tendencyNature' => 15,
+      'tendencyPerformer' => 6,
+      'tendencyCreativity' => 9,
+      'abilityHuman' => 14,
+      'abilityTechnique' => 6,
+      'abilitySign' => 9,
+      'abilityArt' => 8,
+      'abilityNature' => 10,
+      'abilityPerformer' => 7,
+      'abilityCreativity' => 15,
+      ];
 
-    $arrTendencySubject = array_slice($tendency, 0, 5);
-    $arrTendencyNature = array_slice($tendency, 5);
-    $arrAbilitySubject = array_slice($ability, 0, 5);
-    $arrAbilityNature = array_slice($ability, 5);
+        $tendency = array_slice($results, 0, 7);
+        $ability = array_slice($results, 7);
 
-    $tendencySubject = array_keys($arrTendencySubject, max($arrTendencySubject))[0];
-    $tendencyNature = array_keys($arrTendencyNature, max($arrTendencyNature))[0];
+        $arrTendencySubject = array_slice($tendency, 0, 5);
+        $arrTendencyNature = array_slice($tendency, 5);
+        $arrAbilitySubject = array_slice($ability, 0, 5);
+        $arrAbilityNature = array_slice($ability, 5);
 
-    $abilitySubject = array_keys($arrAbilitySubject, max($arrAbilitySubject))[0];
-    $abilityNature = array_keys($arrAbilityNature, max($arrAbilityNature))[0];
+        $tendencySubject = array_keys($arrTendencySubject, max($arrTendencySubject))[0];
+        $tendencyNature = array_keys($arrTendencyNature, max($arrTendencyNature))[0];
+
+        $abilitySubject = array_keys($arrAbilitySubject, max($arrAbilitySubject))[0];
+        $abilityNature = array_keys($arrAbilityNature, max($arrAbilityNature))[0];
+
+        return $tendencySubject;
 
 
-    }
+  }
 }
 
