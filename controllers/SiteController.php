@@ -227,9 +227,9 @@ class SiteController extends Controller
 
     }
 
-    public function actionProfessions($id)
+    public function actionProfessions()
     {
-        $json_url_professions = Yii::$app->params['server_url'] . "/professions/" . $id . "?expand=professions";
+        $json_url_professions = Yii::$app->params['server_url'] . "/professions/";
         $json = file_get_contents($json_url_professions);
         $data_professions = json_decode($json, TRUE);
 
