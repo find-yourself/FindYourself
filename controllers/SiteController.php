@@ -237,6 +237,7 @@ class SiteController extends Controller
 
         return $this->render('professions', [
            'professions' => $professions,
+//            'json_url_professions' => $json_url_professions,
             'data_professions' => $data_professions,
         ]);
     }

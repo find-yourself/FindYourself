@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER['SERVER_NAME'] == "find-yourself.herokuapp.com") {
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $host = $url["host"];
