@@ -195,7 +195,6 @@ class SiteController extends Controller
     foreach (Yii::$app->request->post() as $answer => $value) {
       $result[$answer] = $value;
     }
-    //var_dump($result);
     $resultTest = $this->getResultYovashi($result);
 
     return $this->render('result', [
@@ -340,7 +339,6 @@ class SiteController extends Controller
             }
 
           }
-
     }
 
  $itog = [
@@ -352,11 +350,30 @@ class SiteController extends Controller
    'сфера материальных интересов,  планово-экономических видов работ' => count($materialInterestsAndEconomicActivitiesResult)
  ];
 
-    //var_dump($itog);
     return array_keys($itog, max($itog));
-
-
     }
+
+  public function actionCourseType()
+  {
+    $json_url = Yii::$app->params['server_url'] . "/course-types";
+    $json = file_get_contents($json_url);
+    $data = json_decode($json, TRUE);
+
+    return $this->render('course-type', [
+      'data' => $data,
+    ]);
+  }
+
+  public function actionCourse($id)
+  {
+    $json_url = Yii::$app->params['server_url'] . "/course-types/" . $id . "?expand=course";
+    $json = file_get_contents($json_url);
+    $data = json_decode($json, TRUE);
+
+    return $this->render('course', [
+      'data' => $data,
+    ]);
+  }
 
 
     /**
