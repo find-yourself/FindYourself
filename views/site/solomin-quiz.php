@@ -1,57 +1,61 @@
 <?php
 
+/** @var $data_questions array */
+/** @var $data_answers array */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
-$this->title = $data['name'];
+$this->title = $data_questions['name'];
+
+
+// var_dump($data_questions);
 
 ?>
 
-<?= Html::a('Назад', Url::to(['tests', 'id' => $data['type_id']]), ['class' => 'btn btn-primary'])?>
-
-<div class="site-about">
-  <h1><?= Html::encode($this->title) ?></h1>
-<!--  --><?php //$form = ActiveForm::begin([
-//      //'id' => 'quiz-form',
-//      'layout' => 'horizontal',
-//      'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-//      'labelOptions' => ['class' => 'col-lg-1 control-label'],
-//
-//  ]) ?>
-
-
-  <?php foreach ($data['questions'] as $datum): ?>
-
-  <?php endforeach; ?>
-
-    <?= Html::a('отправить',
-        ['/solomin/'], [
-            'data-method' => 'POST',
-            'data-params' => [
-                'tendency' => [
-                    'human' => 10,
-                    'technique' => 3,
-                    'signSystem' => 5,
-                    'artImage' => 13,
-                    'nature' => 4,
-                    'performer' => 8,
-                    'creativity' => 12,
-
-                ],
-                'ability' => [
-                     [
-                        'human' => 10,
-                        'technique' => 3,
-                        'signSystem' => 5,
-                        'artImage' => 13,
-                        'nature' => 4,
-                        'performer' => 8,
-                        'creativity' => 12,
-
-                    ],
-                ],
-            ],
-        ]) ?>
+<div class="content content-height">
+      <header>
+        <div class="line-grey"></div>
+        <div class="line-dark">
+        <?= Html::a('', Url::to(['quiz', 'id' => $data_questions['type_id']]), ['class' => 'header-link'])?>
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div>
+        </header>
+    <?php foreach ($newData as $key => $value): ?>
+    <div id="block-<?php echo $key; ?>" data-id="<?php echo $key; ?>" class="block-questions">
+    <p class="solimin-heading"></p>
+      <?php foreach ($value as $val): ?>
+      <div class="block-links">
+          <p class="question" id="q-<?php echo $val['id']; ?>"><?php echo $val['text']; ?></p>
+          <div class="input-group">
+              <div class="one-input one-input-1">
+                  <p class="input-name">Вовсе нет</p>
+                  <input class="radio radio-one"  id="input1-<?php echo $val['id']; ?>" type="radio" value="1" name="<?php echo $val['text']; ?>">
+                    <label for="input1-<?php echo $val['id']; ?>"></label>
+              </div>
+              <div class="one-input one-input-2">
+                  <p class="input-name">Пожалуй так</p>
+                  <input class="radio radio-two"  id="input2-<?php echo $val['id']; ?>" type="radio" value="2" name="<?php echo $val['text']; ?>">
+                    <label for="input2-<?php echo $val['id']; ?>"></label>
+              </div>
+              <div class="one-input one-input-3">
+                  <p class="input-name">Верно</p>
+                  <input class="radio radio-three"  id="input3-<?php echo $val['id']; ?>" type="radio" value="3" name="<?php echo $val['text']; ?>">
+                    <label for="input3-<?php echo $val['id']; ?>"></label>
+              </div>
+              <div class="one-input one-input-4">
+                  <p class="input-name">Совершенно верно</p>
+                  <input class="radio radio-four"  id="input4-<?php echo $val['id']; ?>" type="radio" value="4" name="<?php echo $val['text']; ?>">
+                    <label for="input4-<?php echo $val['id']; ?>"></label>
+              </div>
+                    
+          </div>
+        </div>
+        <?php endforeach; ?>
+        <button class="answer-link">Далее</button>
+        <button class="result">Узнать результат</button>
+    </div>
+    <?php endforeach; ?>
 </div>
