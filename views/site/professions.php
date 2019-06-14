@@ -15,7 +15,11 @@ $this->title = 'Профессии';
         </div>
     </header>
     <div class="content-inside">
-        <?php var_dump($professions); ?>
+        <?php var_dump($json_url_professions); ?>
+        <ul>
+        <?php foreach ($data_professions['professions'] as $profession): ?>
+            <li><?php echo $profession['name'] ?></li>
+        <?php endforeach; ?>
+        </ul>
     </div>
 </div>
-
