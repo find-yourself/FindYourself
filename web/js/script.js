@@ -239,6 +239,7 @@ $(document).ready(function(){
       let parentName = $(this).parent().attr('id');
       let go;
       let arr = getResultsYovashi(parent);
+      changeDisplayYovashi(parent);
       console.log(arr);
   });
 
