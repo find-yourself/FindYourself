@@ -14,10 +14,9 @@ $this->title = 'Профессии';
             <h1><?= Html::encode($this->title) ?></h1>
         </div>
     </header>
-    <div class="content-inside">
-        <?php var_dump($json_url_professions) ?>
+    <div class="content-inside">        
         <ul>
-        <?php foreach ($data_professions['professions'] as $profession): ?>
+        <?php foreach ($data_professions as $profession): ?>
             <li><?php echo $profession['name'] ?></li>
         <?php endforeach; ?>
         </ul>
