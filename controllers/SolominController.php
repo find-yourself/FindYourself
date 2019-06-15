@@ -4,7 +4,10 @@ namespace app\controllers;
 
 use app\models\Answers;
 
+use app\models\Professions;
+use app\models\SolominWorks;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\Cors;
 use yii\rest\Controller;
@@ -54,6 +57,7 @@ class SolominController extends Controller
 
   public function actionIndex()
   {
+      \Yii::$app->response->format = Response::FORMAT_JSON;
 //        $request = Yii::$app->request;
 //        $results = $request->post();
 
@@ -88,8 +92,31 @@ class SolominController extends Controller
         $abilitySubject = array_keys($arrAbilitySubject, max($arrAbilitySubject))[0];
         $abilityNature = array_keys($arrAbilityNature, max($arrAbilityNature))[0];
 
-        return $tendencySubject;
+        $tendencySubject = strtolower(preg_replace('/^tendency/', '', $tendencySubject));
+        $tendencyNature = strtolower(preg_replace('/^tendency/', '', $tendencyNature));
 
+        $abilitySubject = strtolower(preg_replace('/^ability/', '', $abilitySubject));
+        $abilityNature = strtolower(preg_replace('/^ability/', '', $abilityNature));
+
+        $tendencyWorksQuery = Professions::find()
+            ->leftJoin('solomin_works', 'professions.id = solomin_works.profession_id')
+            ->where(['labor_object' => $tendencySubject])
+            ->andWhere(['work_nature' => $tendencyNature]);
+        $tendencyWorks = new ActiveDataProvider([
+           'query' => $tendencyWorksQuery,
+        ]);
+
+      $abilityWorksQuery = Professions::find()
+          ->leftJoin('solomin_works', 'professions.id = solomin_works.profession_id')
+          ->where(['labor_object' => $abilitySubject])
+          ->andWhere(['work_nature' => $abilityNature]);
+      $abilityWorks = new ActiveDataProvider([
+          'query' => $abilityWorksQuery,
+      ]);
+
+
+
+        return $abilityWorks;
 
   }
 }

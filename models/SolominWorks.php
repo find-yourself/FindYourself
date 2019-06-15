@@ -15,6 +15,7 @@ use Yii;
  */
 class SolominWorks extends \yii\db\ActiveRecord
 {
+    const RELATION_PROFESSIONS = 'professions';
     /**
      * {@inheritdoc}
      */
@@ -55,4 +56,11 @@ class SolominWorks extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Professions::className(), ['id' => 'profession_id']);
     }
+
+    public function getProfessions()
+    {
+        return $this->hasMany(Professions::class, ['id' => 'profession_id'])
+            ->via(self::RELATION_PROFESSIONS);
+    }
+
 }
