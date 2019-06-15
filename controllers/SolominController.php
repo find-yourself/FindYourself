@@ -58,25 +58,9 @@ class SolominController extends Controller
   public function actionIndex()
   {
       \Yii::$app->response->format = Response::FORMAT_JSON;
-//        $request = Yii::$app->request;
-//        $results = $request->post();
+        $request = Yii::$app->request;
+        $results = $request->post();
 
-      $results = [
-      'tendencyHuman' => 12,
-      'tendencyTechnique' => 8,
-      'tendencySign' => 10,
-      'tendencyArt' => 7,
-      'tendencyNature' => 15,
-      'tendencyPerformer' => 6,
-      'tendencyCreativity' => 9,
-      'abilityHuman' => 14,
-      'abilityTechnique' => 6,
-      'abilitySign' => 9,
-      'abilityArt' => 8,
-      'abilityNature' => 10,
-      'abilityPerformer' => 7,
-      'abilityCreativity' => 15,
-      ];
 
         $tendency = array_slice($results, 0, 7);
         $ability = array_slice($results, 7);
@@ -106,6 +90,8 @@ class SolominController extends Controller
            'query' => $tendencyWorksQuery,
         ]);
 
+        $tendencyWorks = $tendencyWorks->getModels();
+
       $abilityWorksQuery = Professions::find()
           ->leftJoin('solomin_works', 'professions.id = solomin_works.profession_id')
           ->where(['labor_object' => $abilitySubject])
@@ -114,10 +100,12 @@ class SolominController extends Controller
           'query' => $abilityWorksQuery,
       ]);
 
+      $abilityWorks = $abilityWorks->getModels();
 
-
-        return $abilityWorks;
-
+      return [
+          'tendencyWorks' => $tendencyWorks,
+          'abilityWorks' => $abilityWorks,
+      ];
   }
 }
 
