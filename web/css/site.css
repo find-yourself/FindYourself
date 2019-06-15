@@ -583,3 +583,113 @@ html,
 .content-height {
     height: 752px;
 }
+.question-yvashi {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+    padding-top: 10px;
+}
+.block-questions-yvashi {
+    padding: 10px 10px;
+}
+.block-links-yvashi {
+    position: relative;
+}
+.radio-yvashi + label {
+    left: 0;
+}
+.answer-yvashi {
+    padding-left: 40px;
+}
+.radio-yvashi + label:before {
+    background: #61B4BA;
+    top: 3px;
+}
+.radio-yvashi + label:after {
+    top: 3px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #61B4BA;
+}
+#block-yvashi-0 {
+
+}
+#block-yvashi-1 {
+    display: none;
+}
+#block-yvashi-2 {
+    display: none;
+}
+#block-yvashi-3 {
+    display: none;
+}
+#block-yvashi-4 {
+    display: none;
+}
+#block-yvashi-5 {
+    display: none;
+}
+#block-yvashi-6 {
+    display: none;
+}
+#block-yvashi-7 {
+    display: none;
+}
+#block-yvashi-8 {
+    display: none;
+}
+#block-yvashi-9 {
+    display: none;
+}
+#block-yvashi-10 {
+    display: none;
+}
+.content-auto {
+    height: auto;
+}
+.answer-yvashi-link {
+    display: inline-block;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    padding: 17px 30px;
+    background: linear-gradient(180deg, #00C7FF 0%, #2491B0 90%);
+    border-radius: 15px;
+    margin: 20px auto;
+    border-color: transparent;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+.result-yvashi {
+    display: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    padding: 17px 30px;
+    background: linear-gradient(180deg, #00C7FF 0%, #2491B0 90%);
+    border-radius: 15px;
+    margin: 20px auto;
+    border-color: transparent;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+button:focus, button:hover {
+    outline: none !important;
+}
