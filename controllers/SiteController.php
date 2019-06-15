@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Answers;
 
+use app\models\Professions;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\Cors;
@@ -170,13 +171,21 @@ class SiteController extends Controller
 
     $newData = array_chunk($data_questions['questions'], 5, TRUE);
 
-    if($id == 1) {
-        return $this->render('solomin-quiz', [
-            'data_questions' => $data_questions,
-            'data_answers' => $data_answers,
-            'newData' => $newData,
-          ]);
-    } else {
+
+    // return $this->render('quiz-item', [
+    //   'data' => $data,
+    //   'newData' => $newData,
+    // ]);
+      
+//      'model' => $model,
+//      'questions' => $questions,
+
+    // if($id == 1) {
+    //     return $this->render('solomin-quiz', [
+    //         'data' => $data_questions,
+    //     ]);
+    // }
+
         return $this->render('quiz-item', [
             'data_questions' => $data_questions,
             'data_answers' => $data_answers,
@@ -184,174 +193,10 @@ class SiteController extends Controller
         ]);
     }
 
-  }
-
-  public function actionResult()
-  {
-    $result = [];
-
-    foreach (Yii::$app->request->post() as $answer => $value) {
-      $result[$answer] = $value;
-    }
-    //var_dump($result);
-    $resultTest = $this->getResultYovashi($result);
-
-    return $this->render('result', [
-      'resultTest' => $resultTest
-    ]);
-
-  }
-
-  protected function getResultYovashi($result)
-  {
-
-    $workInPeople = [//сфера работы с людьми
-      72 => [1, 2],
-      74 => [1, 2],
-      76 => [3, 4],
-      79 => [1, 2],
-      82 => [3, 4],
-      86 => [1, 2],
-      87 => [3, 4],
-      19 => [3, 4],
-      93 => [3, 4],
-      98 => [3, 4]
-    ];
-
-    $mentalWork = [//сфера умственного труда
-      74 => [3, 4],
-      77 => [1, 2],
-      80 => [3, 4],
-      83 => [1, 2],
-      84 => [3, 4],
-      88 => [1, 2],
-      90 => [1, 2],
-      91 => [3, 4],
-      96 => [3, 4],
-      100 => [1, 2]
-    ];
-
-    $technicalInterests = [//сфера технических интересов
-      71 => [2, 3],
-      73 => [2, 3],
-      76 => [1, 2],
-      78 => [3, 4],
-      82 => [1, 2],
-      84 => [1, 2],
-      85 => [3, 4],
-      95 => [1, 2],
-      96 => [1, 2],
-      99 => [3, 4]
-    ];
-
-    $aestheticsArt = [//сфера эстетики и искусства
-      71 => [1, 2],
-      75 => [3, 4],
-      78 => [1, 2],
-      80 => [1, 2],
-      81 => [3, 4],
-      87 => [1, 2],
-      91 => [1, 2],
-      93 => [1, 2],
-      94 => [3, 4],
-      98 => [1, 2]
-    ];
-
-    $physicalAndActivities = [//сфера физического труда,  подвижной деятельности
-      72 => [3, 4],
-      75 => [1, 2],
-      83 => [3, 4],
-      85 => [1, 2],
-      88 => [3, 4],
-      90 => [3, 4],
-      92 => [1, 2],
-      94 => [1, 2],
-      95 => [3, 4],
-      97 => [1, 2]
-    ];
-
-    $materialInterestsAndEconomicActivities = [//сфера материальных интересов,  планово-экономических видов работ
-      73 => [1, 2],
-      77 => [3, 4],
-      79 => [3, 4],
-      81 => [1, 2],
-      86 => [3, 4],
-      89 => [1, 2],
-      92 => [3, 4],
-      97 => [3, 4],
-      99 => [1, 2],
-      100 => [3, 4]
-
-    ];
-
-    $workInPeopleResult = [];
-    $mentalWorkResult = [];
-    $technicalInterestsResult = [];
-    $aestheticsArtResult = [];
-    $physicalAndActivitiesResult = [];
-    $materialInterestsAndEconomicActivitiesResult = [];
-
-
-
-    foreach ($result as $answer => $value) {
-
-          if (isset($workInPeople[$answer])) {
-            foreach ($workInPeople[$answer] as $item) {
-              if ($item == $value) {
-                $workInPeopleResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($mentalWork[$answer])) {
-            foreach ($mentalWork[$answer] as $item) {
-              if ($item == $value) {
-                $mentalWorkResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($technicalInterests[$answer])) {
-            foreach ($technicalInterests[$answer] as $item) {
-              if ($item == $value) {
-                $technicalInterestsResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($aestheticsArt[$answer])) {
-            foreach ($aestheticsArt[$answer] as $item) {
-              if ($item == $value) {
-                $aestheticsArtResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($physicalAndActivities[$answer])) {
-            foreach ($physicalAndActivities[$answer] as $item) {
-              if ($item == $value) {
-                $physicalAndActivitiesResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($materialInterestsAndEconomicActivities[$answer])) {
-            foreach ($materialInterestsAndEconomicActivities[$answer] as $item) {
-              if ($item == $value) {
-                $materialInterestsAndEconomicActivitiesResult[$answer] = $value;
-              }
-            }
-
-          }
-
-    }
-
- $itog = [
-   'сфера работы с людьми' => count($workInPeopleResult),
-   'сфера умственного труда' => count($mentalWorkResult),
-   'сфера технических интересов' => count($technicalInterestsResult),
-   'сфера эстетики и искусства' => count($aestheticsArtResult),
-   'сфера физического труда,  подвижной деятельности' => count($physicalAndActivitiesResult),
-   'сфера материальных интересов,  планово-экономических видов работ' => count($materialInterestsAndEconomicActivitiesResult)
- ];
-
-    //var_dump($itog);
-    return array_keys($itog, max($itog));
+    public function actionResult()
+    {
+        var_dump(Yii::$app->request->post());
+        die;
 
   }
 
@@ -381,6 +226,21 @@ class SiteController extends Controller
         $tendencyHuman = Yii::$app->request->post('tendencyHuman');
        
      }
+
+    public function actionProfessions()
+    {
+        $json_url_professions = Yii::$app->params['server_url'] . "/professions/";
+        $json = file_get_contents($json_url_professions);
+        $data_professions = json_decode($json, TRUE);
+
+        $professions = Professions::find() -> all();
+
+        return $this->render('professions', [
+           'professions' => $professions,
+//            'json_url_professions' => $json_url_professions,
+            'data_professions' => $data_professions,
+        ]);
+    }
 
 }
 
