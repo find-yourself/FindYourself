@@ -218,7 +218,7 @@ $(document).ready(function(){
     console.log(jsonString);
 
     $.ajax({
-          url: '/site/answer',
+          url: '/solomin/index',
           type: 'POST',
           data: {data : jsonString}, 
           cache: false,
