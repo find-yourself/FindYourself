@@ -19,6 +19,6 @@ $this->title = 'Главная';
     <div class="content-inside">
         <a href="/site/about-quiz/" class="start-link">Тестирование</a>
         <a href="/site/professions/" class="start-link">Список профессий</a>
-        <a href="#" class="start-link">Список курсов</a>
+        <a href="/site/course-type/" class="start-link">Список курсов</a>
     </div>
 </div>
