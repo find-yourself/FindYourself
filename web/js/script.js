@@ -98,7 +98,7 @@ $(document).ready(function(){
 
   $('.answer-link').on('click', function(e) {
 
-e.preventDefault();
+    e.preventDefault();
 
     let parent = $(this).parent();
     let parentName = $(this).parent().attr('id');
@@ -208,41 +208,14 @@ e.preventDefault();
   });
 
 
+
   $('.result').on('click', function() {
 
-    // let formData = new FormData();
-    // formData.append('tendencyHuman', tendencyHuman);
-    // formData.append('tendencyTechnique', tendencyTechnique);
-    // formData.append('tendencySign', tendencySign);
-    // formData.append('tendencyArt', tendencyArt);
-    // formData.append('tendencyNature', tendencyNature);
-    // formData.append('tendencyPerformer', tendencyPerformer);
-    // formData.append('tendencyCreativity', tendencyCreativity);
-    // formData.append('abilityHuman', abilityHuman);
-    // formData.append('abilityTechnique', abilityTechnique);
-    // formData.append('abilitySign', abilitySign);
-    // formData.append('abilityArt', abilityArt);
-    // formData.append('abilityNature', abilityNature);
-    // formData.append('abilityPerformer', abilityPerformer);
-    // formData.append('abilityCreativity', abilityCreativity);
 
     let arr = [tendencyHuman, tendencyTechnique, tendencySign, tendencyArt, tendencyNature, tendencyPerformer, tendencyCreativity, abilityHuman, abilityTechnique, abilitySign, abilityArt, abilityNature, abilityPerformer, abilityCreativity];
 
     let jsonString = JSON.stringify(arr);
-
-    // $.ajax({
-    //     url: '/site/answer',
-    //     type: 'POST',
-    //     processData: false,
-    //     contentType: false,
-    //     data: formData,
-    //     success: function(formData){
-    //       console.log(formData)
-    //     },
-    //     error: function(error){
-    //       console.log('fail');
-    //       }
-    //   });
+    console.log(jsonString);
 
     $.ajax({
           url: '/site/answer',
@@ -258,7 +231,56 @@ e.preventDefault();
   
   });
 
-  
+    // Обработчик Йоваши
+
+  $('.answer-yvashi-link').on('click', function(){
+     
+      let parent = $(this).parent();
+      let parentName = $(this).parent().attr('id');
+      let go;
+      let arr = getResultsYovashi(parent);
+      console.log(arr);
+  });
+
+  function changeDisplayYovashi(parent) {
+    let id = +($(parent).attr('data-id'));
+
+    if($("div").is(`#block-yvashi-${id + 1}`)) {
+      parent.css('display', 'none');
+      $(`#block-yvashi-${id + 1}`).css('display', 'block');
+
+    } else {
+      console.log('no me');
+      $('.answer-yvashi-link').css('display', 'none');
+      $('.result-yvashi').css('display', 'inline-block');
+
+    }
+  };
+
+  function getResultsYovashi(parent) {
+
+    let allLinks = $(parent).find('.block-links-yvashi');
+    let allValue = [];
+
+    for(let i = 0; i < allLinks.length; i++) {
+      let allInput = $(allLinks[i]).find('input');
+
+      for(let j = 0; j < allInput.length; j++) {
+        let prop = $(allInput[j]).prop('checked');
+        if(prop === true) {
+          checked = true;
+          allValue.push($(allInput[j]).val());
+        }
+      }
+
+    }
+
+    if(allValue.length < 5) {
+      alert('Ответьте на все вопросы');
+    } else {
+      return allValue;
+    }
+  };
 
 });
 
