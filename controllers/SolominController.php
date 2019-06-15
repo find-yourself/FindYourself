@@ -59,8 +59,10 @@ class SolominController extends Controller
   {
       \Yii::$app->response->format = Response::FORMAT_JSON;
         $request = Yii::$app->request;
-        $results = $request->post();
+        $results = $request->post('data');
+        //$results = '{"tendencyHuman":13,"tendencyTechnique":10,"tendencySign":17,"tendencyArt":8,"tendencyNature":13,"tendencyPerformer":18,"tendencyCreativity":10,"abilityHuman":8,"abilityTechnique":14,"abilitySign":19,"abilityArt":13,"abilityNature":7,"abilityPerformer":9,"abilityCreativity":14}';
 
+        $results = json_decode($results, true);
 
         $tendency = array_slice($results, 0, 7);
         $ability = array_slice($results, 7);

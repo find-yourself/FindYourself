@@ -212,7 +212,22 @@ $(document).ready(function(){
   $('.result').on('click', function() {
 
 
-    let arr = [tendencyHuman, tendencyTechnique, tendencySign, tendencyArt, tendencyNature, tendencyPerformer, tendencyCreativity, abilityHuman, abilityTechnique, abilitySign, abilityArt, abilityNature, abilityPerformer, abilityCreativity];
+    let arr = {
+      "tendencyHuman": tendencyHuman,
+      "tendencyTechnique": tendencyTechnique,
+      "tendencySign": tendencySign,
+      "tendencyArt": tendencyArt,
+      "tendencyNature": tendencyNature,
+      "tendencyPerformer": tendencyPerformer,
+      "tendencyCreativity": tendencyCreativity,
+      "abilityHuman": abilityHuman,
+      "abilityTechnique": abilityTechnique,
+      "abilitySign": abilitySign,
+      "abilityArt": abilityArt,
+      "abilityNature": abilityNature,
+      "abilityPerformer": abilityPerformer,
+      "abilityCreativity": abilityCreativity
+    };
 
     let jsonString = JSON.stringify(arr);
     console.log(jsonString);
@@ -223,8 +238,8 @@ $(document).ready(function(){
           data: {data : jsonString}, 
           cache: false,
   
-          success: function(){
-              console.log('ok');
+          success: function(data){
+              console.log(data);
           }
         });
 
