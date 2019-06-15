@@ -8,9 +8,8 @@
 
 namespace app\controllers;
 
-
-use app\models\Professions;
 use yii\rest\ActiveController;
+use app\models\Professions;
 
 class ProfessionController extends ActiveController
 {

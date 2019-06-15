@@ -54,7 +54,7 @@ $config = [
 
               [
                 'class' => yii\rest\UrlRule::class,
-                'controller' => ['quiz-type', 'quiz-item', 'answer', 'profession'],
+                'controller' => ['quiz-type', 'quiz-item', 'answer', 'course-type', 'profession'],
                 'except' => ['delete'],
               ],
 
