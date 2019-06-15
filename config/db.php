@@ -1,4 +1,5 @@
 <?php
+
 if (getenv("CLEARDB_DATABASE_URL")) {
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     return [
