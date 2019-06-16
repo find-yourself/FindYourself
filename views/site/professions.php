@@ -1,10 +1,7 @@
 <?php
-
 //use yii\helpers\Url;
 use yii\helpers\Html;
-
 $this->title = 'Профессии';
-
 ?>
 
 <div class="content">
@@ -15,11 +12,10 @@ $this->title = 'Профессии';
         </div>
     </header>
     <div class="content-inside">
-        <?php var_dump($json_url_professions) ?>
         <ul>
-        <?php foreach ($data_professions['professions'] as $profession): ?>
-            <li><?php echo $profession['name'] ?></li>
-        <?php endforeach; ?>
+            <?php foreach ($data_professions as $profession): ?>
+                <li><?php echo $profession['name'] ?></li>
+            <?php endforeach; ?>
         </ul>
     </div>
 </div>
