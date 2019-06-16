@@ -311,16 +311,16 @@ $(document).ready(function(){
     let jsonString = JSON.stringify(allValueYovashi);
 
 
-    // $.ajax({
-    //       url: '/solomin/index',
-    //       type: 'POST',
-    //       data: {data : jsonString}, 
-    //       cache: false,
+    $.ajax({
+          url: '/site/result',
+          type: 'POST',
+          data: {data : jsonString}, 
+          cache: false,
   
-    //       success: function(data){
-    //           console.log(data);
-    //       }
-    //     });
+          success: function(data){
+              console.log(data);
+          }
+        });
   });
 
 });
