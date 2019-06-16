@@ -248,16 +248,18 @@ $(document).ready(function(){
 
     // Обработчик Йоваши
 
+  let allValueYovashi = {};
+
   $('.answer-yvashi-link').on('click', function(e){
       
       e.preventDefault();
      
       let parent = $(this).parent();
       let parentName = $(this).parent().attr('id');
-      let go;
-      let arr = getResultsYovashi(parent);
-      changeDisplayYovashi(parent);
-      console.log(arr);
+      let go = getResultsYovashi(parent);
+      if(go === true) {
+        changeDisplayYovashi(parent);
+      }
   });
 
   function changeDisplayYovashi(parent) {
@@ -270,10 +272,12 @@ $(document).ready(function(){
     } else {
       console.log('no me');
       $('.answer-yvashi-link').css('display', 'none');
-      $('.result-yvashi').css('display', 'inline-block');
+      $('.btn-resulte').css('display', 'inline-block');
 
     }
   };
+
+
 
   function getResultsYovashi(parent) {
 
@@ -285,8 +289,9 @@ $(document).ready(function(){
 
       for(let j = 0; j < allInput.length; j++) {
         let prop = $(allInput[j]).prop('checked');
+        let id = $(allInput[j]).attr('data-parent');
         if(prop === true) {
-          checked = true;
+          allValueYovashi[`${id}`] = $(allInput[j]).val();
           allValue.push($(allInput[j]).val());
         }
       }
@@ -295,10 +300,28 @@ $(document).ready(function(){
 
     if(allValue.length < 5) {
       alert('Ответьте на все вопросы');
+      return false;
     } else {
-      return allValue;
+      return true;
     }
   };
+
+  $('.btn-resulte').on('click', function(){
+
+    let jsonString = JSON.stringify(allValueYovashi);
+
+
+    // $.ajax({
+    //       url: '/solomin/index',
+    //       type: 'POST',
+    //       data: {data : jsonString}, 
+    //       cache: false,
+  
+    //       success: function(data){
+    //           console.log(data);
+    //       }
+    //     });
+  });
 
 });
 
