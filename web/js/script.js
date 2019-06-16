@@ -248,7 +248,7 @@ $(document).ready(function(){
 
     // Обработчик Йоваши
 
-  $('.answer-yvashi-link').on('click', function(){
+  $('.answer-yvashi-link').on('click', function(e){
       
       e.preventDefault();
      
