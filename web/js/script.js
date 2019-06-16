@@ -249,6 +249,8 @@ $(document).ready(function(){
     // Обработчик Йоваши
 
   $('.answer-yvashi-link').on('click', function(){
+      
+      e.preventDefault();
      
       let parent = $(this).parent();
       let parentName = $(this).parent().attr('id');
