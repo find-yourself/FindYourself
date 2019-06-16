@@ -37,7 +37,7 @@ $this->title = $data_questions['name'];
           <?php $i = 1; ?>
           <?php foreach ($data_answers as $answer): ?>
             <?php if ($answer['question_id'] == $val['id']): ?>
-              <input class="radio radio-yvashi" id="input-<?= $val['id'] . $i ?>" type="radio" name="<?= $val['id'] ?>" value="<?= $i ?>">
+              <input data-parent="<?php echo $val['id']; ?>" class="radio radio-yvashi" id="input-<?= $val['id'] . $i ?>" type="radio" name="<?= $val['id'] ?>" value="<?= $i ?>">
               <label for="input-<?= $val['id'] . $i ?>"></label>
               <p class="answer-yvashi"><?= $answer['text'] ?></p>
               
@@ -53,7 +53,7 @@ $this->title = $data_questions['name'];
     </div>
   <?php endforeach; ?>
 
-    <?= Html::submitButton('Результат', ['class' => 'btn btn-primary']) ?>
+    <?= Html::submitButton('Результат', ['class' => 'btn btn-primary btn-resulte']) ?>
 
     <?php ActiveForm::end(); ?>
 
