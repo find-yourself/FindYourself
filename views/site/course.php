@@ -14,9 +14,12 @@ $this->title = $data['name'];
       <h1><?= Html::encode($this->title) ?></h1>
     </div>
   </header>
-  <div class="content-inside">
+  <div class="content-course">
+  <div class="img">
+    <img src="/img/man.png" alt="">
+    </div>
     <?php foreach ($data['course'] as $datum): ?>
-      <?= Html::a($datum['name'], Url::to(['#', 'id' => $datum['id']]), ['class' => 'start-link'])?>
+      <?= Html::a($datum['name'], Url::to(['#', 'id' => $datum['id']]), ['class' => 'start-link-course'])?>
     <?php endforeach; ?>
   </div>
 </div>

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Answers;
+use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
 class AnswerController extends ActiveController
