@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Answers;
 
 use app\models\Professions;
+use app\models\YovashiKey;
+use app\models\YovashiWorks;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\Cors;
@@ -190,165 +192,42 @@ class SiteController extends Controller
 
   public function actionResult()
   {
-    $result = [];
+    $fieldYovashi = null;
+    $workYovashi = [];
 
-    foreach (Yii::$app->request->post() as $answer => $value) {
-      $result[$answer] = $value;
+    if (Yii::$app->request->post()) {
+      $fieldYovashi = $this->getResultYovashi(Yii::$app->request->post());
     }
-    $resultTest = $this->getResultYovashi($result);
+
+    if ($fieldYovashi) {
+      foreach ($fieldYovashi as $field) {
+        foreach (YovashiWorks::find()->where(['field' => $field])->all() as $item) {
+          $workYovashi[] = $item->profession->name;
+        }
+      }
+    }
 
     return $this->render('result', [
-      'resultTest' => $resultTest
+      'fieldYovashi' => $fieldYovashi,
+      'workYovashi' => $workYovashi,
     ]);
 
   }
 
   protected function getResultYovashi($result)
   {
-
-    $workInPeople = [//сфера работы с людьми
-      72 => [1, 2],
-      74 => [1, 2],
-      76 => [3, 4],
-      79 => [1, 2],
-      82 => [3, 4],
-      86 => [1, 2],
-      87 => [3, 4],
-      19 => [3, 4],
-      93 => [3, 4],
-      98 => [3, 4]
-    ];
-
-    $mentalWork = [//сфера умственного труда
-      74 => [3, 4],
-      77 => [1, 2],
-      80 => [3, 4],
-      83 => [1, 2],
-      84 => [3, 4],
-      88 => [1, 2],
-      90 => [1, 2],
-      91 => [3, 4],
-      96 => [3, 4],
-      100 => [1, 2]
-    ];
-
-    $technicalInterests = [//сфера технических интересов
-      71 => [2, 3],
-      73 => [2, 3],
-      76 => [1, 2],
-      78 => [3, 4],
-      82 => [1, 2],
-      84 => [1, 2],
-      85 => [3, 4],
-      95 => [1, 2],
-      96 => [1, 2],
-      99 => [3, 4]
-    ];
-
-    $aestheticsArt = [//сфера эстетики и искусства
-      71 => [1, 2],
-      75 => [3, 4],
-      78 => [1, 2],
-      80 => [1, 2],
-      81 => [3, 4],
-      87 => [1, 2],
-      91 => [1, 2],
-      93 => [1, 2],
-      94 => [3, 4],
-      98 => [1, 2]
-    ];
-
-    $physicalAndActivities = [//сфера физического труда,  подвижной деятельности
-      72 => [3, 4],
-      75 => [1, 2],
-      83 => [3, 4],
-      85 => [1, 2],
-      88 => [3, 4],
-      90 => [3, 4],
-      92 => [1, 2],
-      94 => [1, 2],
-      95 => [3, 4],
-      97 => [1, 2]
-    ];
-
-    $materialInterestsAndEconomicActivities = [//сфера материальных интересов,  планово-экономических видов работ
-      73 => [1, 2],
-      77 => [3, 4],
-      79 => [3, 4],
-      81 => [1, 2],
-      86 => [3, 4],
-      89 => [1, 2],
-      92 => [3, 4],
-      97 => [3, 4],
-      99 => [1, 2],
-      100 => [3, 4]
-
-    ];
-
-    $workInPeopleResult = [];
-    $mentalWorkResult = [];
-    $technicalInterestsResult = [];
-    $aestheticsArtResult = [];
-    $physicalAndActivitiesResult = [];
-    $materialInterestsAndEconomicActivitiesResult = [];
-
-
+    $yovashiKeyResult = [];
 
     foreach ($result as $answer => $value) {
 
-          if (isset($workInPeople[$answer])) {
-            foreach ($workInPeople[$answer] as $item) {
-              if ($item == $value) {
-                $workInPeopleResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($mentalWork[$answer])) {
-            foreach ($mentalWork[$answer] as $item) {
-              if ($item == $value) {
-                $mentalWorkResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($technicalInterests[$answer])) {
-            foreach ($technicalInterests[$answer] as $item) {
-              if ($item == $value) {
-                $technicalInterestsResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($aestheticsArt[$answer])) {
-            foreach ($aestheticsArt[$answer] as $item) {
-              if ($item == $value) {
-                $aestheticsArtResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($physicalAndActivities[$answer])) {
-            foreach ($physicalAndActivities[$answer] as $item) {
-              if ($item == $value) {
-                $physicalAndActivitiesResult[$answer] = $value;
-              }
-            }
-          }
-          if (isset($materialInterestsAndEconomicActivities[$answer])) {
-            foreach ($materialInterestsAndEconomicActivities[$answer] as $item) {
-              if ($item == $value) {
-                $materialInterestsAndEconomicActivitiesResult[$answer] = $value;
-              }
-            }
+      $query = YovashiKey::find()->where(['question_id' => $answer])->andWhere(['answer_id' => $value]);
 
-          }
+      if ($query->exists()) {
+        $yovashiKeyResult[] = $query->one()->field;
+      }
     }
 
- $itog = [
-   'сфера работы с людьми' => count($workInPeopleResult),
-   'сфера умственного труда' => count($mentalWorkResult),
-   'сфера технических интересов' => count($technicalInterestsResult),
-   'сфера эстетики и искусства' => count($aestheticsArtResult),
-   'сфера физического труда,  подвижной деятельности' => count($physicalAndActivitiesResult),
-   'сфера материальных интересов,  планово-экономических видов работ' => count($materialInterestsAndEconomicActivitiesResult)
- ];
+    $itog = array_count_values($yovashiKeyResult);
 
     return array_keys($itog, max($itog));
     }
